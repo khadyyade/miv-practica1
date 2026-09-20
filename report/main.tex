@@ -99,7 +99,7 @@
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.55\linewidth]{misleading-chart.png}
+  \fbox{\includegraphics[width=0.55\linewidth]{misleading-chart.png}}
     \caption{Gràfic publicat per @Esquerra\_ERC a X el 30 de març de 2024,
       comparant el pressupost inicial de la Generalitat de 2003 amb el de 2024.
       Font: \url{https://x.com/Esquerra_ERC/status/1767926450135384275/photo/1}}
@@ -157,7 +157,7 @@ consulta amb una URL reproduïble i documenta explícitament el seu propi criter
   \item \textbf{Institut d'Estadística de Catalunya (Idescat) (2003–2009):} Per als anys 2003–2009, el dataset anterior no arriba, i Idescat és l’única font pública disponible per a
 aquest tram. S’ha usat com a font secundària, però ja que no ofereix una API ni una descàrrega neta per a aquesta sèrie, els valors s’han copiat a mà
 llegint la seva pàgina. En contrastar anys solapats amb la font primària s'ha detectat una desviació
-de fins al 30%. El grau de confiança es consequentment menor.
+de fins al 30\%. El grau de confiança es consequentment menor.
 \end{itemize}
 
 Els anys amb pressupost prorrogat no disposen de dades, de manera
@@ -212,26 +212,81 @@ Any & Pressupost nou & Font & Valor nominal (M€) & IPC (2003=100) & Valor proc
 \section{Explicacio del redisseny}
 
 \subsection{Eleccio del tipus de grafic}
-
+Les dades són una sèrie temporal contínua (un valor per any, 22 anys). Per
+Tufte, això demana un gràfic de línies, no barres. Les barres comuniquen comparacions puntuals
+entre poques categories; una línia deixa veure la trajectòria, que és precisament el que el gràfic original
+amagava en reduir-la a tres punts. S’ha apliquat que:
+\begin{itemize}
+  \item L'eix Y començi a zero
+  \item Eixos etiquetats amb unitats (M€, anys), 
+  \item Llegenda completa
+\end{itemize}
+S'ha afegit també una codificació visual que distingeix els anys amb pressupost nou aprovat
+(cercle ple) dels anys prorrogats (cercle buit), una informació que el gràfic d’ERC ometia
 
 \begin{figure}[h!]
   \centering
-  \fbox{\parbox[c][4cm][c]{0.75\linewidth}{\centering \small }}
-  \caption{Redisseny proposat: [eina/llibreria].}
+  \fbox{\includegraphics[width=0.9\linewidth]{modified-chart.png}}
+  \caption{Redisseny: aplicació Streamlit + Plotly (\texttt{src/02\_app\_redisseny.py}), amb la magnitud commutada
+a euros reals (constants de 2003) i el rang complet 2003–2024 seleccionat.}
   \label{fig:redisseny}
 \end{figure}
 
 \subsection{Interactivitat implementada}
+S’han implementat tres tipologies:
 \begin{itemize}
-  \item \textbf{[Tipologia 1]:} ...
-  \item \textbf{[Tipologia 2]:} ...
+  \item \textbf{Abstraure/Elaborar:} En passar el ratolí per sobre de qualsevol punt apareix l’any,
+l’estat (aprovat/prorrogat), la font exacta de la dada, i els valors nominal i real (Figura 3). Millora
+la usabilitat perquè dona feedback immediat sense sobrecarregar el gràfic base.
+  \item \textbf{Codificar:} Un selector canvia en viu la magnitud representada entre euros
+nominals i euros constants de 2003. Deixa que sigui el propi usuari qui comprova que bona part del çreixement del
+pressupost és inflació i no despesa real.
+\item \textbf{Filtrar:} Un control de rang permet acotar la comparació a qualsevol parell d’anys,
+inclosos exactament 2003 i 2024. La mètrica sota el gràfic es recalcula automàticament
+per al rang triat
 \end{itemize}
 
+\begin{figure}[h!]
+  \centering
+  \fbox{\includegraphics[width=0.9\linewidth]{modified-chart_1.png}}
+  \caption{Les tres tipologies d'interacció a la vegada: \textbf{Filtrar} (rang acotat a
+2010–2024), \textbf{Codificar} (magnitud commutada a euros reals, constants de 2003) i
+\textbf{Abstraure/Elaborar} (\emph{tooltip} sobre l'any 2016, que mostra el seu estat prorrogat, la font i els valors nominal i real). La mètrica inferior es recalcula en
+viu per al rang seleccionat: $\times$1,03 en euros reals entre 2010 i 2024.}
+\end{figure}
+
 % =========================================================
-\section{Annex tecnic}
+\section{Annex tècnic}
 
-\textbf{Repositori de codi:} \url{}
+\textbf{Repositori de codi:} \url{https://github.com/khadyyade/miv-practica1}
 
-\textbf{Eines emprades:} ...
+\textbf{Eines emprades:} Python 3 (\texttt{pandas} per a la reconstrucció i deflactació
+de la sèrie, \texttt{urllib}/\texttt{json} per a la crida a l'API oberta), Plotly
+(\texttt{graph\_objects}) per al gràfic interactiu, i Streamlit per als controls i
+l'aplicació web.
+
+\textbf{Estructura del repositori:}
+\begin{itemize}\footnotesize
+  \item \texttt{main.tex} --- aquest informe.
+  \item \texttt{src/01\_build\_dataset.py} --- reconstrucció de la sèrie: crida a l'API
+  oberta (font primària, 2010--2023), dades manuals d'Idescat (font secundària, 2003--2009),
+  tractament de la pròrroga i deflactació per IPC. Genera
+  \texttt{src/pressupost\_generalitat\_2003\_2024.csv}.
+  \item \texttt{src/pressupost\_generalitat\_2003\_2024.csv} --- sèrie reconstruïda, amb
+  font i estat (aprovat/prorrogat) per a cada any.
+  \item \texttt{src/02\_app\_redisseny.py} --- aplicació Streamlit + Plotly del redisseny
+  interactiu (Secció 3).
+  \item \texttt{src/requirements.txt} --- dependències de Python.
+  \item \texttt{img/} --- captures utilitzades en aquest informe.
+\end{itemize}
+
+\textbf{Per reproduir-ho:}
+\begin{enumerate}\footnotesize
+  \item \texttt{pip install -r src/requirements.txt}
+  \item \texttt{python3 src/01\_build\_dataset.py} --- descarrega les dades en directe de
+  l'API i regenera el CSV (cal connexió a internet).
+  \item \texttt{streamlit run src/02\_app\_redisseny.py} --- obre l'aplicació interactiva
+  al navegador.
+\end{enumerate}
 
 \end{document}
