@@ -267,26 +267,20 @@ l'aplicació web.
 
 \textbf{Estructura del repositori:}
 \begin{itemize}\footnotesize
-  \item \texttt{main.tex} --- aquest informe.
-  \item \texttt{src/01\_build\_dataset.py} --- reconstrucció de la sèrie: crida a l'API
-  oberta (font primària, 2010--2023), dades manuals d'Idescat (font secundària, 2003--2009),
-  tractament de la pròrroga i deflactació per IPC. Genera
-  \texttt{src/pressupost\_generalitat\_2003\_2024.csv}.
-  \item \texttt{src/pressupost\_generalitat\_2003\_2024.csv} --- sèrie reconstruïda, amb
-  font i estat (aprovat/prorrogat) per a cada any.
-  \item \texttt{src/02\_app\_redisseny.py} --- aplicació Streamlit + Plotly del redisseny
-  interactiu (Secció 3).
-  \item \texttt{src/requirements.txt} --- dependències de Python.
-  \item \texttt{img/} --- captures utilitzades en aquest informe.
+  \item \texttt{docs/nova-practica-miv.pdf}: Enunciat original de la pràctica.
+  \item \texttt{data/pressupost\_generalitat\_2003\_2024.csv}: Dataset reconstruït
+  \item \texttt{src/build\_dataset.py}: Codi de la reconstrucció i generació del dataset.
+  \item \texttt{src/plot\_design.py}: Aplicació Streamlit + Plotly del redisseny interactiu.
+  \item \texttt{requirements.txt}: Dependències de Python.
+  \item \texttt{report/main.tex} i \texttt{report/main.pdf}: Aquest informe, font icompilat.
+  \item \texttt{report/img/}: Imatges utilitzades en aquest informe.
 \end{itemize}
 
-\textbf{Per reproduir-ho:}
+\textbf{Per reproduir-ho} (des de l'arrel del repositori):
 \begin{enumerate}\footnotesize
-  \item \texttt{pip install -r src/requirements.txt}
-  \item \texttt{python3 src/01\_build\_dataset.py} --- descarrega les dades en directe de
-  l'API i regenera el CSV (cal connexió a internet).
-  \item \texttt{streamlit run src/02\_app\_redisseny.py} --- obre l'aplicació interactiva
-  al navegador.
+  \item \texttt{pip install -r requirements.txt}
+  \item \texttt{python3 src/build\_dataset.py}: Descarrega les dades en directe de l'API i regenera el CSV a \texttt{data/} (cal connexió a internet).
+  \item \texttt{streamlit run src/plot\_design.py}: Obre l'aplicació interactiva al navegador.
 \end{enumerate}
 
 \end{document}
