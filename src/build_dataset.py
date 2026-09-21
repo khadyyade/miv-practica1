@@ -22,7 +22,7 @@ OUT_PATH = "pressupost_generalitat_2003_2024.csv"
 # (A) FONT PRIMARIA: GENCAT (2010-2023)
 # =============================================================================
 # Dataset: "Pressupostos aprovats de la Generalitat de Catalunya" (id yd9k-7jhw)
-# Portal:  analisi.transparenciacatalunya.cat -- API Socrata/SODA
+# Portal:  analisi.transparenciacatalunya.cat
 
 API_URL = "https://analisi.transparenciacatalunya.cat/resource/yd9k-7jhw.json"
 SOQL_QUERY = {

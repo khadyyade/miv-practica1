@@ -1,29 +1,23 @@
 % !TEX program = pdflatex
 % =========================================================
-% PRACTICA 1 -- Desmuntant la Mentida Visual
-% Modelitzacio i Visualitzacio de Dades -- URV (DEIM)
+% PRACTICA 1: Desmuntant la Mentida Visual
+% Modelitzacio i Visualitzacio de Dades -URV 
 % =========================================================
 \documentclass[11pt,a4paper]{article}
 
 % ---------- Codificacio ----------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-% Si tens texlive-lang-spanish / texlive-lang-other instal·lats, pots
-% descomentar la linia seguent per tenir guionat catala correcte:
-% \usepackage[catalan]{babel}
 
 % ---------- Marges: document limitat a 4 pagines ----------
 \usepackage[margin=2cm,top=1.8cm,bottom=1.8cm]{geometry}
 
 % ---------- Tipografia ----------
-% \usepackage{lmodern}   % opcional: activa-ho si el tens instal·lat (millora lleugerament els tipus)
 \usepackage{microtype}
 
 % ---------- Colors ----------
 \usepackage{xcolor}
 \definecolor{urvblau}{HTML}{003D6D}
-\definecolor{alerta}{HTML}{B3261E}
-\definecolor{grisclar}{HTML}{F2F2F2}
 
 % ---------- Format de seccio ----------
 \usepackage{titlesec}
@@ -48,19 +42,6 @@
 \usepackage{caption}
 \captionsetup{font=small, labelfont={bf,color=urvblau}, skip=4pt}
 \graphicspath{{img/}}
-
-% ---------- Caixa per remarcar l'engany ----------
-\usepackage{tcolorbox}
-\newtcolorbox{enganybox}{
-  colback=red!4, colframe=alerta, boxrule=0.6pt, arc=2pt,
-  left=6pt, right=6pt, top=4pt, bottom=4pt,
-  title={Engany detectat}, fonttitle=\bfseries\small,
-  fontupper=\small
-}
-\newtcolorbox{fontbox}{
-  colback=grisclar, colframe=urvblau!60, boxrule=0.5pt, arc=2pt,
-  left=6pt, right=6pt, top=3pt, bottom=3pt, fontupper=\footnotesize
-}
 
 % ---------- Enllacos ----------
 \usepackage[colorlinks=true, linkcolor=urvblau, citecolor=urvblau, urlcolor=urvblau]{hyperref}
@@ -95,14 +76,20 @@
 \section{Diagnostic critic}
 
 \subsection{El grafic i el seu context}
-% TODO: qui el va publicar, quan, on, quin missatge pretenia transmetre
+El gràfic el va publicar el compte oficial \textbf{@Esquerra\_ERC} a X (Twitter) el
+\textbf{30 de març de 2024}, en plena \textbf{campanya} per a les eleccions al
+Parlament de Catalunya del 12 de maig de 2024. ERC governava, i el gràfic formava part d'una sèrie de publicacions que
+presentaven xifres de gestió econòmica del Govern com a argument de campanya. El missatge
+que pretenia transmetre és que el pressupost de la Generalitat havia crescut de
+manera \textbf{espectacular} sota ERC per justificar la seva continuïtat. Aquest missatge no una peça informativa neutra. Notem una comparació de
+només tres punts(2003, 2020 i 2024) i un eix sense escala: és una decisió que
+serveix directament l'objectiu persuasiu de la publicació.
 
 \begin{figure}[h!]
   \centering
-  \fbox{\includegraphics[width=0.55\linewidth]{misleading-chart.png}}
+  \fbox{\includegraphics[width=0.50\linewidth]{misleading-chart.png}}
     \caption{Gràfic publicat per @Esquerra\_ERC a X el 30 de març de 2024,
-      comparant el pressupost inicial de la Generalitat de 2003 amb el de 2024.
-      Font: \url{https://x.com/Esquerra_ERC/status/1767926450135384275/photo/1}}
+      comparant el pressupost inicial de la Generalitat de 2003 amb el de 2024. Consultar \href{https://x.com/Esquerra_ERC/status/1767926450135384275/photo/1}{aquí}}
   \label{fig:original}
 \end{figure}
 
@@ -156,8 +143,8 @@ consulta amb una URL reproduïble i documenta explícitament el seu propi criter
 
   \item \textbf{Institut d'Estadística de Catalunya (Idescat) (2003–2009):} Per als anys 2003–2009, el dataset anterior no arriba, i Idescat és l’única font pública disponible per a
 aquest tram. S’ha usat com a font secundària, però ja que no ofereix una API ni una descàrrega neta per a aquesta sèrie, els valors s’han copiat a mà
-llegint la seva pàgina. En contrastar anys solapats amb la font primària s'ha detectat una desviació
-de fins al 30\%. El grau de confiança es consequentment menor.
+llegint la seva \href{https://www.idescat.cat/indicadors/?id=aec&n=15638}{pàgina}. En contrastar anys solapats amb la font primària s'ha detectat una desviació
+de fins al 30\%. El grau de confiança es consequentment menor. 
 \end{itemize}
 
 Els anys amb pressupost prorrogat no disposen de dades, de manera
