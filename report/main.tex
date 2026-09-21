@@ -109,7 +109,7 @@
 \subsection{Anàlisi crítica }
 \subsubsection{Principis de Tufte}
 \begin{itemize}
-  \item \textbf{Distorsió / \textit{lie factor}:} l'efecte real de l'increment pressupostari
+  \item \textbf{Distorsió / \textit{lie factor}:} L'efecte real de l'increment pressupostari
   (15.693\,M€ el 2003 a 43.673\,M€ el 2024) és de $\times 2{,}78$, mentre que l'alçada
   de la barra de 2024 és 6 vegades la de 2003. Això dona un \emph{lie factor}
   $\approx 6/2{,}78 \approx 2{,}16$, bastant per sobre del marge acceptable ($0{,}95$--$1{,}05$)
@@ -119,7 +119,7 @@
   cegament en la impressió visual. A més, el bloc de color de fons i l'etiqueta destacada
   "+34,29\%" no aporten informació nova: són èmfasi retòric que competeix amb les dades
   en lloc de servir-les, cosa que redueix el ratio dades-tinta.
-  \item \textbf{Integritat gràfica:} el gràfic viola directament el principi de Tufte segons
+  \item \textbf{Integritat gràfica:} El gràfic viola directament el principi de Tufte segons
   el qual la representació visual d'una quantitat ha de ser proporcional a la magnitud
   numèrica que representa. Aquí la impressió visual (salt de $\times 6$) no es correspon
   amb la xifra real ($\times 2{,}78$), generant una incoherència entre el que es llegeix
@@ -133,11 +133,11 @@
   després", com si fossin dos passos consecutius d'una mateixa tendència. Això esborra
   visualment les dues dècades intermèdies i n'amaga l'evolució real, incloent-hi els anys
   sense pressupost aprovat.
-  \item \textbf{Similitud:} les dues barres comparteixen exactament el mateix color i estil,
+  \item \textbf{Similitud:} Les dues barres comparteixen exactament el mateix color i estil,
   cosa que fa que el cervell assumeixi automàticament que són comparables en igualtat de
   condicions, és a dir, que l'única diferència rellevant és l'alçada i que aquesta reflecteix
   fidelment la diferència real entre les dades.
-  \item \textbf{Regió comuna:} el bloc de fons de color engloba tot el gràfic
+  \item \textbf{Regió comuna:} El bloc de fons de color engloba tot el gràfic
   en una única unitat visual tancada, separada de la resta de la pàgina. Això fa que es
   percebi com un fet ja tancat i verificat, sense invitar el lector a qüestionar l'escala
   o a buscar-hi més context.
@@ -213,8 +213,7 @@ Any & Pressupost nou & Font & Valor nominal (M€) & IPC (2003=100) & Valor proc
 
 \subsection{Eleccio del tipus de grafic}
 Les dades són una sèrie temporal contínua (un valor per any, 22 anys). Per
-Tufte, això demana un gràfic de línies, no barres. Les barres comuniquen comparacions puntuals
-entre poques categories; una línia deixa veure la trajectòria, que és precisament el que el gràfic original
+Tufte, això demana un gràfic de línies. Una línia deixa veure la trajectòria, que és precisament el que el gràfic original
 amagava en reduir-la a tres punts. S’ha apliquat que:
 \begin{itemize}
   \item L'eix Y començi a zero
@@ -222,7 +221,7 @@ amagava en reduir-la a tres punts. S’ha apliquat que:
   \item Llegenda completa
 \end{itemize}
 S'ha afegit també una codificació visual que distingeix els anys amb pressupost nou aprovat
-(cercle ple) dels anys prorrogats (cercle buit), una informació que el gràfic d’ERC ometia
+(cercle ple) dels anys prorrogats (cercle buit), una informació que el gràfic d’ERC ometia.
 
 \begin{figure}[h!]
   \centering
@@ -243,7 +242,7 @@ nominals i euros constants de 2003. Deixa que sigui el propi usuari qui comprova
 pressupost és inflació i no despesa real.
 \item \textbf{Filtrar:} Un control de rang permet acotar la comparació a qualsevol parell d’anys,
 inclosos exactament 2003 i 2024. La mètrica sota el gràfic es recalcula automàticament
-per al rang triat
+per al rang triat.
 \end{itemize}
 
 \begin{figure}[h!]
@@ -272,7 +271,7 @@ l'aplicació web.
   \item \texttt{src/build\_dataset.py}: Codi de la reconstrucció i generació del dataset.
   \item \texttt{src/plot\_design.py}: Aplicació Streamlit + Plotly del redisseny interactiu.
   \item \texttt{requirements.txt}: Dependències de Python.
-  \item \texttt{report/main.tex} i \texttt{report/main.pdf}: Aquest informe, font icompilat.
+  \item \texttt{report/main.tex} i \texttt{report/main.pdf}: Aquest informe, font i compilat.
   \item \texttt{report/img/}: Imatges utilitzades en aquest informe.
 \end{itemize}
 
